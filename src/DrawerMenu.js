@@ -42,30 +42,28 @@ class LeftDrawer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      backgroundColor: ""
+      backgroundColor: "",
+      backgroundColorOptions: ["#e92f71", "#1b9591", "#5201cf", "#005577"],
+      textColor: "",
+      textColorOptions: ["#e92f71", "#1b9591", "#5201cf", "#005577"]
     };
-    this.handleBackgroundColorChangeRed = this.handleBackgroundColorChangeRed.bind(
-      this
-    );
-    this.handleBackgroundColorChangeBlue = this.handleBackgroundColorChangeBlue.bind(
+    this.handleBackgroundColorChange = this.handleBackgroundColorChange.bind(
       this
     );
 
-    this.handleBackgroundColorChangeYellow = this.handleBackgroundColorChangeYellow.bind(
-      this
-    );
+    this.handleTextColorChange = this.handleTextColorChange.bind(this);
   }
 
-  handleBackgroundColorChangeRed = () => {
-    this.setState({ backgroundColor: "red" });
+  handleBackgroundColorChange = event => {
+    const id = Number(event.currentTarget.id);
+    console.log(`change color background to ${id}`);
+    this.setState({ backgroundColor: this.state.backgroundColorOptions[id] });
   };
 
-  handleBackgroundColorChangeBlue = () => {
-    this.setState({ backgroundColor: "blue" });
-  };
-
-  handleBackgroundColorChangeYellow = () => {
-    this.setState({ backgroundColor: "yellow" });
+  handleTextColorChange = event => {
+    const id = Number(event.currentTarget.id);
+    console.log(`change color text to ${id}`);
+    this.setState({ textColor: this.state.textColorOptions[id] });
   };
 
   render() {
@@ -89,21 +87,45 @@ class LeftDrawer extends Component {
         >
           <div className={classes.toolbar} />
           <Divider />
+
           <List>
             <ListItem>
-              <ButtonGroup
-                color="primary"
-                aria-label="outlined primary button group"
-              >
-                <Button onClick={this.handleBackgroundColorChangeRed}>
-                  Red
-                </Button>
-                <Button onClick={this.handleBackgroundColorChangeBlue}>
-                  Blue
-                </Button>
-                <Button onClick={this.handleBackgroundColorChangeYellow}>
+              <Typography>Background Color</Typography>
+            </ListItem>
+            <ListItem style={{ maxWidth: "240px" }}>
+              <ButtonGroup>
+                {this.state.backgroundColorOptions.map((value, index) => (
+                  <Button
+                    id={index}
+                    key={index}
+                    onClick={this.handleBackgroundColorChange}
+                    size="medium"
+                    style={{ backgroundColor: value }}
+                  ></Button>
+                ))}
+              </ButtonGroup>
+            </ListItem>
+          </List>
+          <Divider />
+          <List>
+            <ListItem>
+              <Typography>Title</Typography>
+            </ListItem>
+            <ListItem>
+              <ButtonGroup>
+                {this.state.textColorOptions.map((value, index) => (
+                  <Button
+                    id={index}
+                    key={index}
+                    onClick={this.handleTextColorChange}
+                    style={{ backgroundColor: value }}
+                  ></Button>
+                ))}
+                {/* <Button onClick={this.handleTextColorChangeRed}>Red</Button>
+                <Button onClick={this.handleTextColorChangeBlue}>Blue</Button>
+                <Button onClick={this.handleTextColorChangeYellow}>
                   Yellow
-                </Button>
+                </Button> */}
               </ButtonGroup>
             </ListItem>
             <ListItem>
@@ -136,7 +158,7 @@ class LeftDrawer extends Component {
         <MainContentSection
           title={this.props.title}
           subTitle={this.props.subTitle}
-          textColor="white"
+          textColor={this.state.textColor}
           titlePosX="500px"
           subtitlePosX="700px"
           mainContentBackgroundColor={this.state.backgroundColor}
