@@ -11,6 +11,8 @@ import ListItem from "@material-ui/core/ListItem";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import MainContentSection from "./MainContent.js";
+import Button from "@material-ui/core/Button";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
 
 const drawerWidth = 240;
 
@@ -39,8 +41,32 @@ const style = theme => ({
 class LeftDrawer extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      backgroundColor: ""
+    };
+    this.handleBackgroundColorChangeRed = this.handleBackgroundColorChangeRed.bind(
+      this
+    );
+    this.handleBackgroundColorChangeBlue = this.handleBackgroundColorChangeBlue.bind(
+      this
+    );
+
+    this.handleBackgroundColorChangeYellow = this.handleBackgroundColorChangeYellow.bind(
+      this
+    );
   }
+
+  handleBackgroundColorChangeRed = () => {
+    this.setState({ backgroundColor: "red" });
+  };
+
+  handleBackgroundColorChangeBlue = () => {
+    this.setState({ backgroundColor: "blue" });
+  };
+
+  handleBackgroundColorChangeYellow = () => {
+    this.setState({ backgroundColor: "yellow" });
+  };
 
   render() {
     const { classes } = this.props;
@@ -50,7 +76,7 @@ class LeftDrawer extends Component {
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
             <Typography variant="h6" noWrap>
-              Clipped drawer
+              Color Picker
             </Typography>
           </Toolbar>
         </AppBar>
@@ -65,7 +91,20 @@ class LeftDrawer extends Component {
           <Divider />
           <List>
             <ListItem>
-              <Typography>Items here</Typography>
+              <ButtonGroup
+                color="primary"
+                aria-label="outlined primary button group"
+              >
+                <Button onClick={this.handleBackgroundColorChangeRed}>
+                  Red
+                </Button>
+                <Button onClick={this.handleBackgroundColorChangeBlue}>
+                  Blue
+                </Button>
+                <Button onClick={this.handleBackgroundColorChangeYellow}>
+                  Yellow
+                </Button>
+              </ButtonGroup>
             </ListItem>
             <ListItem>
               <form>
@@ -97,6 +136,10 @@ class LeftDrawer extends Component {
         <MainContentSection
           title={this.props.title}
           subTitle={this.props.subTitle}
+          textColor="white"
+          titlePosX="500px"
+          subtitlePosX="700px"
+          mainContentBackgroundColor={this.state.backgroundColor}
         ></MainContentSection>
       </div>
     );

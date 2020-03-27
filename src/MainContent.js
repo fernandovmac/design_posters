@@ -13,9 +13,10 @@ import { withStyles } from "@material-ui/core/styles";
 
 const drawerWidth = 240;
 
-const style = theme => ({
+const style = makeStyles(theme => ({
   root: {
-    display: "flex"
+    display: "flex",
+    backgroundColor: "black"
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1
@@ -29,29 +30,47 @@ const style = theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3)
+    padding: 6,
+    backgroundColor: props => props.mainContentBackgroundColor,
+    minWidth: "800px",
+    minHeight: "1500px"
+  },
+
+  title: {
+    position: "absolute",
+    color: props => props.textColor,
+    left: props => props.titlePosX
+  },
+
+  subTitle: {
+    position: "absolute",
+    left: props => props.subtitlePosX,
+    top: "700px",
+    color: props => props.textColor
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar
-});
+}));
 
-class MainContentSection extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  render() {
-    const { classes } = this.props;
-    return (
-      <div>
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          <Typography paragraph>{this.props.title}</Typography>
-          <Typography paragraph>{this.props.subTitle}</Typography>
-        </main>
-      </div>
-    );
-  }
+export default function MainContentSection(props) {
+  const classes = style(props);
+  const { color, ...other } = props;
+  return (
+    <div>
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
+        <Typography
+          variant="h1"
+          component="h2"
+          className={classes.title}
+          gutterBottom
+        >
+          {props.title}
+        </Typography>
+        <Typography variant="h3" gutterBottom className={classes.subTitle}>
+          {props.subTitle}
+        </Typography>
+      </main>
+    </div>
+  );
 }
-
-export default withStyles(style)(MainContentSection);
