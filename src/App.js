@@ -10,14 +10,14 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "",
-      subtitle: ""
+      title: "title",
+      subtitle: "subtitle"
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubtitleChange = this.handleSubtitleChange.bind(this);
   }
 
-  handleChange(e) {
+  handleChange(e, value = "title") {
     this.setState({
       title: e.target.value
     });

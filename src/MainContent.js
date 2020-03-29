@@ -10,6 +10,7 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
+import transitions from "@material-ui/core/styles/transitions";
 
 const drawerWidth = 240;
 
@@ -39,14 +40,17 @@ const style = makeStyles(theme => ({
   title: {
     position: "absolute",
     color: props => props.textColor,
-    left: props => props.titlePosX
+    left: props => props.titlePosX,
+    top: props => props.titlePosY,
+    transition: "all .7s ease-in-out .2s"
   },
 
   subTitle: {
     position: "absolute",
     left: props => props.subtitlePosX,
-    top: "700px",
-    color: props => props.textColor
+    top: props => props.subtitlePosY,
+    color: props => props.textColor,
+    transition: "all .7s ease-in-out .2s"
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar

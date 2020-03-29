@@ -13,12 +13,18 @@ import { withStyles } from "@material-ui/core/styles";
 import MainContentSection from "./MainContent.js";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
+import Grid from "@material-ui/core/Grid";
+import ButtonBase from "@material-ui/core/ButtonBase";
+import MobileStepper from "@material-ui/core/MobileStepper";
+import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
+import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 
 const drawerWidth = 240;
 
 const style = theme => ({
   root: {
-    display: "flex"
+    display: "flex",
+    flexGrow: 1
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1
@@ -34,6 +40,14 @@ const style = theme => ({
     flexGrow: 1,
     padding: theme.spacing(3)
   },
+  colorButton: {
+    // padding: "10px",
+    // margin: "10px",
+    minWidth: "16px",
+    // maxWidth: "8px",
+    minHeight: "18px",
+    borderRadius: "2px"
+  },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar
 });
@@ -43,9 +57,46 @@ class LeftDrawer extends Component {
     super(props);
     this.state = {
       backgroundColor: "",
-      backgroundColorOptions: ["#e92f71", "#1b9591", "#5201cf", "#005577"],
+      backgroundColorOptions: [
+        "#e92f71",
+        "#1b9591",
+        "#5201cf",
+        "#005577",
+        "#81d8d0",
+        "#b2987c",
+        "#f9e8e2",
+        "#aabcb9",
+        "#f58e84",
+        "#ae6a9a",
+        "#e6d2e0",
+        "#49a8de",
+        "#ffedea"
+      ],
       textColor: "",
-      textColorOptions: ["#e92f71", "#1b9591", "#5201cf", "#005577"]
+      textColorOptions: ["#e92f71", "#1b9591", "#5201cf", "#005577"],
+      chosenTheme: 0,
+      titlePosXOptions: ["300px", "320px", "340px", "360px", "400px", "420px"],
+      titlePosX: "300px",
+      titlePosYOptions: ["100px", "120px", "180px", "200px", "220px", "240px"],
+      titlePosY: "100px",
+      subtitlePosXOptions: [
+        "300px",
+        "500px",
+        "600px",
+        "650px",
+        "700px",
+        "720px"
+      ],
+      subtitlePosX: "400px",
+      subtitlePosYOptions: [
+        "100px",
+        "200px",
+        "300px",
+        "350px",
+        "400px",
+        "420px"
+      ],
+      subtitlePosY: "100px"
     };
     this.handleBackgroundColorChange = this.handleBackgroundColorChange.bind(
       this
@@ -64,6 +115,38 @@ class LeftDrawer extends Component {
     const id = Number(event.currentTarget.id);
     console.log(`change color text to ${id}`);
     this.setState({ textColor: this.state.textColorOptions[id] });
+  };
+
+  handleNextTheme = () => {
+    this.setState({ chosenTheme: (this.state.chosenTheme += 1) });
+    this.setState({
+      titlePosX: this.state.titlePosXOptions[this.state.chosenTheme]
+    });
+    this.setState({
+      titlePosY: this.state.titlePosYOptions[this.state.chosenTheme]
+    });
+    this.setState({
+      subtitlePosX: this.state.subtitlePosXOptions[this.state.chosenTheme]
+    });
+    this.setState({
+      subtitlePosY: this.state.subtitlePosYOptions[this.state.chosenTheme]
+    });
+  };
+
+  handlePrevTheme = () => {
+    this.setState({ chosenTheme: (this.state.chosenTheme -= 1) });
+    this.setState({
+      titlePosX: this.state.titlePosXOptions[this.state.chosenTheme]
+    });
+    this.setState({
+      titlePosY: this.state.titlePosYOptions[this.state.chosenTheme]
+    });
+    this.setState({
+      subtitlePosX: this.state.subtitlePosXOptions[this.state.chosenTheme]
+    });
+    this.setState({
+      subtitlePosY: this.state.subtitlePosYOptions[this.state.chosenTheme]
+    });
   };
 
   render() {
@@ -93,21 +176,60 @@ class LeftDrawer extends Component {
               <Typography>Background Color</Typography>
             </ListItem>
             <ListItem style={{ maxWidth: "240px" }}>
-              <ButtonGroup>
+              <Grid container spacing={1}>
                 {this.state.backgroundColorOptions.map((value, index) => (
-                  <Button
-                    id={index}
-                    key={index}
-                    onClick={this.handleBackgroundColorChange}
-                    size="medium"
-                    style={{ backgroundColor: value }}
-                  ></Button>
+                  <Grid item xs={1}>
+                    <ButtonBase
+                      className={classes.colorButton}
+                      focusRipple
+                      id={index}
+                      key={index}
+                      onClick={this.handleBackgroundColorChange}
+                      // size="small"
+                      style={{ backgroundColor: value }}
+                      centerRipple="true"
+                    ></ButtonBase>
+                  </Grid>
                 ))}
-              </ButtonGroup>
+              </Grid>
             </ListItem>
           </List>
           <Divider />
+          <ListItem>
+            <Typography>Layout Theme</Typography>
+            <Typography>{this.state.chosenTheme}</Typography>
+          </ListItem>
+          <ListItem>
+            <MobileStepper
+              variant="dots"
+              steps={6}
+              position="static"
+              activeStep={this.state.chosenTheme}
+              className={classes.root}
+              nextButton={
+                <Button
+                  size="small"
+                  onClick={this.handleNextTheme}
+                  disabled={this.state.chosenTheme === 5}
+                >
+                  Next
+                  <KeyboardArrowRight />
+                </Button>
+              }
+              backButton={
+                <Button
+                  size="small"
+                  onClick={this.handlePrevTheme}
+                  disabled={this.state.chosenTheme === 0}
+                >
+                  <KeyboardArrowLeft />
+                  Back
+                </Button>
+              }
+            />
+          </ListItem>
           <List>
+            <Divider />
             <ListItem>
               <Typography>Title</Typography>
             </ListItem>
@@ -121,13 +243,9 @@ class LeftDrawer extends Component {
                     style={{ backgroundColor: value }}
                   ></Button>
                 ))}
-                {/* <Button onClick={this.handleTextColorChangeRed}>Red</Button>
-                <Button onClick={this.handleTextColorChangeBlue}>Blue</Button>
-                <Button onClick={this.handleTextColorChangeYellow}>
-                  Yellow
-                </Button> */}
               </ButtonGroup>
             </ListItem>
+
             <ListItem>
               <form>
                 <TextField
@@ -159,8 +277,10 @@ class LeftDrawer extends Component {
           title={this.props.title}
           subTitle={this.props.subTitle}
           textColor={this.state.textColor}
-          titlePosX="500px"
-          subtitlePosX="700px"
+          titlePosX={this.state.titlePosX}
+          titlePosY={this.state.titlePosY}
+          subtitlePosX={this.state.subtitlePosX}
+          subtitlePosY={this.state.subtitlePosY}
           mainContentBackgroundColor={this.state.backgroundColor}
         ></MainContentSection>
       </div>
