@@ -1,16 +1,6 @@
 import React, { Component } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import AppBar from "@material-ui/core/AppBar";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import TextField from "@material-ui/core/TextField";
-import { withStyles } from "@material-ui/core/styles";
-import transitions from "@material-ui/core/styles/transitions";
 
 const drawerWidth = 240;
 
@@ -42,7 +32,7 @@ const style = makeStyles(theme => ({
     color: props => props.textColor,
     left: props => props.titlePosX,
     top: props => props.titlePosY,
-    transition: "all .7s ease-in-out .2s"
+    transition: "all .3s ease-in-out .2s"
   },
 
   subTitle: {

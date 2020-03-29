@@ -8,13 +8,15 @@ import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
-import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import MainContentSection from "./MainContent.js";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Grid from "@material-ui/core/Grid";
 import ButtonBase from "@material-ui/core/ButtonBase";
+import BackgroundColorSection from "./BackgroundColorSection.js";
+import TextColorSection from "./TextColorSection.js";
+import TextInputSection from "./TextInputSection.js";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
@@ -40,14 +42,7 @@ const style = theme => ({
     flexGrow: 1,
     padding: theme.spacing(3)
   },
-  colorButton: {
-    // padding: "10px",
-    // margin: "10px",
-    minWidth: "16px",
-    // maxWidth: "8px",
-    minHeight: "18px",
-    borderRadius: "2px"
-  },
+
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar
 });
@@ -169,29 +164,10 @@ class LeftDrawer extends Component {
         >
           <div className={classes.toolbar} />
           <Divider />
-          <List>
-            <ListItem>
-              <Typography>Background Color</Typography>
-            </ListItem>
-            <ListItem style={{ maxWidth: "240px" }}>
-              <Grid container spacing={1}>
-                {this.state.backgroundColorOptions.map((value, index) => (
-                  <Grid item xs={1}>
-                    <ButtonBase
-                      className={classes.colorButton}
-                      focusRipple
-                      id={index}
-                      key={index}
-                      onClick={this.handleBackgroundColorChange}
-                      // size="small"
-                      style={{ backgroundColor: value }}
-                      centerRipple="true"
-                    ></ButtonBase>
-                  </Grid>
-                ))}
-              </Grid>
-            </ListItem>
-          </List>
+          <BackgroundColorSection
+            backgroundColorOptions={this.state.backgroundColorOptions}
+            handleBackgroundColorChange={this.handleBackgroundColorChange}
+          ></BackgroundColorSection>
           <Divider />
           <ListItem>
             <Typography>Layout Theme</Typography>
@@ -232,47 +208,16 @@ class LeftDrawer extends Component {
           </ListItem>
           <List>
             <Divider />
-            <ListItem>
-              <Typography>Title</Typography>
-            </ListItem>
-            <ListItem>
-              <ButtonGroup>
-                {this.state.textColorOptions.map((value, index) => (
-                  <Button
-                    id={index}
-                    key={index}
-                    onClick={this.handleTextColorChange}
-                    style={{ backgroundColor: value }}
-                  ></Button>
-                ))}
-              </ButtonGroup>
-            </ListItem>
-
-            <ListItem>
-              <form>
-                <TextField
-                  name="title"
-                  label="Main title"
-                  onChange={this.props.handleChange}
-                  margin="normal"
-                  value={this.props.value}
-                ></TextField>
-              </form>
-            </ListItem>
-          </List>
-          <Divider />
-          <List>
-            <ListItem>
-              <form>
-                <TextField
-                  name="subtitle"
-                  label="sub title"
-                  onChange={this.props.handleSubtitleChange}
-                  margin="normal"
-                  value={this.props.subtitleValue}
-                ></TextField>
-              </form>
-            </ListItem>
+            <TextColorSection
+              textColorOptions={this.state.textColorOptions}
+              handleTextColorChange={this.handleTextColorChange}
+            ></TextColorSection>
+            <TextInputSection
+              handleTitleChange={this.props.handleTitleChange}
+              title={this.props.title}
+              handleSubtitleChange={this.props.handleSubtitleChange}
+              subtitleValue={this.props.subtitleValue}
+            ></TextInputSection>
           </List>
         </Drawer>
         <MainContentSection

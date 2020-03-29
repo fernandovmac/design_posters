@@ -13,11 +13,11 @@ class App extends Component {
       title: "title",
       subtitle: "subtitle"
     };
-    this.handleChange = this.handleChange.bind(this);
+    this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleSubtitleChange = this.handleSubtitleChange.bind(this);
   }
 
-  handleChange(e, value = "title") {
+  handleTitleChange(e) {
     this.setState({
       title: e.target.value
     });
@@ -32,8 +32,7 @@ class App extends Component {
     return (
       <div>
         <LeftDrawer
-          handleChange={this.handleChange}
-          value={this.state.title}
+          handleTitleChange={this.handleTitleChange}
           subtitleValue={this.state.subtitle}
           handleSubtitleChange={this.handleSubtitleChange}
           title={this.state.title}
