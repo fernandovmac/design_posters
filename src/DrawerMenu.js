@@ -101,7 +101,6 @@ class LeftDrawer extends Component {
     this.handleBackgroundColorChange = this.handleBackgroundColorChange.bind(
       this
     );
-
     this.handleTextColorChange = this.handleTextColorChange.bind(this);
   }
 
@@ -170,7 +169,6 @@ class LeftDrawer extends Component {
         >
           <div className={classes.toolbar} />
           <Divider />
-
           <List>
             <ListItem>
               <Typography>Background Color</Typography>
@@ -197,7 +195,11 @@ class LeftDrawer extends Component {
           <Divider />
           <ListItem>
             <Typography>Layout Theme</Typography>
-            <Typography>{this.state.chosenTheme}</Typography>
+          </ListItem>
+          <ListItem>
+            <Typography variant="p" color="terciary">
+              {`Current theme is ${this.state.chosenTheme}`}
+            </Typography>
           </ListItem>
           <ListItem>
             <MobileStepper
