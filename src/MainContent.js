@@ -5,20 +5,6 @@ import Typography from "@material-ui/core/Typography";
 const drawerWidth = 240;
 
 const style = makeStyles(theme => ({
-  root: {
-    display: "flex",
-    backgroundColor: "black"
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0
-  },
-  drawerPaper: {
-    width: drawerWidth
-  },
   content: {
     flexGrow: 1,
     padding: 6,
@@ -29,18 +15,22 @@ const style = makeStyles(theme => ({
 
   title: {
     position: "absolute",
+    fontFamily: props => props.titleFontFamily,
     color: props => props.textColor,
     left: props => props.titlePosX,
     top: props => props.titlePosY,
     transition: "all .3s ease-in-out .2s"
+    // fontFamily: "Gotu, sans-serif"
   },
 
   subTitle: {
     position: "absolute",
+    fontFamily: props => props.subtitleFontFamily,
     left: props => props.subtitlePosX,
     top: props => props.subtitlePosY,
     color: props => props.textColor,
     transition: "all .7s ease-in-out .2s"
+    // fontFamily: "Gotu, sans-serif"
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar

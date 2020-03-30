@@ -110,7 +110,8 @@ class LeftDrawer extends Component {
         "400px",
         "420px"
       ],
-      subtitlePosY: "100px"
+      subtitlePosY: "100px",
+      fontFamily: "Gotu, sans-serif"
     };
     this.handleBackgroundColorChange = this.handleBackgroundColorChange.bind(
       this
@@ -165,6 +166,11 @@ class LeftDrawer extends Component {
     this.setState({
       subtitlePosY: this.state.subtitlePosYOptions[this.state.chosenTheme]
     });
+  };
+
+  handleFontChange = event => {
+    this.setState({ fontFamily: event.target.value });
+    console.log(this.state.fontFamily);
   };
 
   render() {
@@ -241,6 +247,8 @@ class LeftDrawer extends Component {
               title={this.props.title}
               handleSubtitleChange={this.props.handleSubtitleChange}
               subtitleValue={this.props.subtitleValue}
+              handleFontChange={this.handleFontChange}
+              fontFamily={this.state.fontFamily}
             ></TextInputSection>
           </List>
         </Drawer>
@@ -253,6 +261,8 @@ class LeftDrawer extends Component {
           subtitlePosX={this.state.subtitlePosX}
           subtitlePosY={this.state.subtitlePosY}
           mainContentBackgroundColor={this.state.backgroundColor}
+          titleFontFamily={this.state.fontFamily}
+          subtitleFontFamily={this.state.fontFamily}
         ></MainContentSection>
       </div>
     );
