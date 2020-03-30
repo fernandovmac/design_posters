@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -24,6 +25,13 @@ import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 const drawerWidth = 240;
 
 const style = theme => ({
+  themeSelector: {
+    background: "none",
+    paddingLeft: "0px",
+    fontWeight: 100,
+    fontSize: "10px"
+  },
+
   root: {
     display: "flex",
     flexGrow: 1
@@ -213,12 +221,13 @@ class LeftDrawer extends Component {
               steps={6}
               position="static"
               activeStep={this.state.chosenTheme}
-              className={classes.root}
+              className={classes.themeSelector}
               nextButton={
                 <Button
                   size="small"
                   onClick={this.handleNextTheme}
                   disabled={this.state.chosenTheme === 5}
+                  className={classes.themeSelector}
                 >
                   Next
                   <KeyboardArrowRight />
@@ -229,6 +238,7 @@ class LeftDrawer extends Component {
                   size="small"
                   onClick={this.handlePrevTheme}
                   disabled={this.state.chosenTheme === 0}
+                  className={classes.themeSelector}
                 >
                   <KeyboardArrowLeft />
                   Back

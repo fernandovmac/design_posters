@@ -19,8 +19,8 @@ const style = makeStyles(theme => ({
     color: props => props.textColor,
     left: props => props.titlePosX,
     top: props => props.titlePosY,
-    transition: "all .3s ease-in-out .2s"
-    // fontFamily: "Gotu, sans-serif"
+    transition: "all .3s ease-in-out .2s",
+    zIndex: 99
   },
 
   subTitle: {
@@ -29,8 +29,18 @@ const style = makeStyles(theme => ({
     left: props => props.subtitlePosX,
     top: props => props.subtitlePosY,
     color: props => props.textColor,
-    transition: "all .7s ease-in-out .2s"
-    // fontFamily: "Gotu, sans-serif"
+    transition: "all .3s ease-in-out .2s",
+    zIndex: 99
+  },
+
+  image: {
+    position: "absolute",
+    left: "500px",
+    top: "150px",
+    height: "200px",
+    width: "200px",
+    backgroundPosition: "center",
+    zIndex: 2
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar
@@ -51,9 +61,15 @@ export default function MainContentSection(props) {
         >
           {props.title}
         </Typography>
-        <Typography variant="h3" gutterBottom className={classes.subTitle}>
+        <Typography variant="h4" gutterBottom className={classes.subTitle}>
           {props.subTitle}
         </Typography>
+        <div
+          className={classes.image}
+          style={{
+            backgroundImage: `url(${"https://i.picsum.photos/id/821/200/200.jpg"})`
+          }}
+        ></div>
       </main>
     </div>
   );

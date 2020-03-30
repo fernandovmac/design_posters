@@ -27,7 +27,7 @@ const style = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(2),
     minWidth: 80,
-    maxHeight: 30,
+    maxHeight: "100px",
     fontWeight: 100,
     fontSize: "12px",
     margin: "0px"
