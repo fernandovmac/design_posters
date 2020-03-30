@@ -68,7 +68,26 @@ class LeftDrawer extends Component {
         "#ffedea"
       ],
       textColor: "",
-      textColorOptions: ["#e92f71", "#1b9591", "#5201cf", "#005577"],
+      filteredTextColorOptions: [
+        "#e92f71",
+        "#1b9591",
+        "#5201cf",
+        "#005577",
+        "#81d8d0",
+        "#b2987c",
+        "#f9e8e2",
+        "#aabcb9",
+        "#f58e84",
+        "#ae6a9a",
+        "#e6d2e0",
+        "#49a8de",
+        "#ffedea"
+      ],
+      unfilteredTextColorOptions: [
+        ["#e92f71", "#1b9591", "#5201cf", "#005577"],
+        ["#b2987c", "#f9e8e2", "#aabcb9", "#f58e84"],
+        ["#aabcb9", "#f58e84", "#ae6a9a", "#e6d2e0", "#49a8de", "#ffedea"]
+      ],
       chosenTheme: 0,
       titlePosXOptions: ["300px", "320px", "340px", "360px", "400px", "420px"],
       titlePosX: "300px",
@@ -103,12 +122,17 @@ class LeftDrawer extends Component {
     const id = Number(event.currentTarget.id);
     console.log(`change color background to ${id}`);
     this.setState({ backgroundColor: this.state.backgroundColorOptions[id] });
+    this.setState({
+      filteredTextColorOptions: this.state.unfilteredTextColorOptions[
+        Math.floor(Math.random() * 3)
+      ]
+    });
   };
 
   handleTextColorChange = event => {
     const id = Number(event.currentTarget.id);
     console.log(`change color text to ${id}`);
-    this.setState({ textColor: this.state.textColorOptions[id] });
+    this.setState({ textColor: this.state.filteredTextColorOptions[id] });
   };
 
   handleNextTheme = () => {
@@ -209,7 +233,7 @@ class LeftDrawer extends Component {
           <List>
             <Divider />
             <TextColorSection
-              textColorOptions={this.state.textColorOptions}
+              textColorOptions={this.state.filteredTextColorOptions}
               handleTextColorChange={this.handleTextColorChange}
             ></TextColorSection>
             <TextInputSection
