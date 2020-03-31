@@ -106,7 +106,7 @@ export default function TextInputSection(props) {
           ></TextField>
         </form>
       </ListItem>
-      <Divider />
+
       <ListItem>
         <form>
           <TextField
@@ -118,6 +118,7 @@ export default function TextInputSection(props) {
           ></TextField>
         </form>
       </ListItem>
+      <Divider />
     </div>
   );
 }

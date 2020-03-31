@@ -4,13 +4,15 @@ import ListItem from "@material-ui/core/ListItem";
 import Grid from "@material-ui/core/Grid";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
 
 const drawerWidth = 240;
 
 const style = makeStyles(theme => ({
   root: {
     display: "flex",
-    flexGrow: 1
+    flexGrow: 1,
+    fontFamily: "Noto Sans JP"
   },
 
   drawer: {
@@ -61,6 +63,7 @@ export default function BackgroundColorSection(props) {
           ))}
         </Grid>
       </ListItem>
+      <Divider />
     </div>
   );
 }

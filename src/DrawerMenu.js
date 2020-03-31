@@ -12,6 +12,8 @@ import ListItem from "@material-ui/core/ListItem";
 import { withStyles } from "@material-ui/core/styles";
 import MainContentSection from "./MainContent.js";
 import Button from "@material-ui/core/Button";
+import ImageUploadSection from "./ImageUploadSection.js";
+import LayoutThemeSection from "./LayoutThemeSection.js";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Grid from "@material-ui/core/Grid";
 import ButtonBase from "@material-ui/core/ButtonBase";
@@ -25,16 +27,10 @@ import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 const drawerWidth = 240;
 
 const style = theme => ({
-  themeSelector: {
-    background: "none",
-    paddingLeft: "0px",
-    fontWeight: 100,
-    fontSize: "10px"
-  },
-
   root: {
     display: "flex",
-    flexGrow: 1
+    flexGrow: 1,
+    fontFamily: "Noto Sans JP"
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1
@@ -206,48 +202,12 @@ class LeftDrawer extends Component {
             backgroundColorOptions={this.state.backgroundColorOptions}
             handleBackgroundColorChange={this.handleBackgroundColorChange}
           ></BackgroundColorSection>
-          <Divider />
-          <ListItem>
-            <Typography>Layout Theme</Typography>
-          </ListItem>
-          <ListItem>
-            <Typography variant="p" color="terciary">
-              {`Current theme is ${this.state.chosenTheme}`}
-            </Typography>
-          </ListItem>
-          <ListItem>
-            <MobileStepper
-              variant="dots"
-              steps={6}
-              position="static"
-              activeStep={this.state.chosenTheme}
-              className={classes.themeSelector}
-              nextButton={
-                <Button
-                  size="small"
-                  onClick={this.handleNextTheme}
-                  disabled={this.state.chosenTheme === 5}
-                  className={classes.themeSelector}
-                >
-                  Next
-                  <KeyboardArrowRight />
-                </Button>
-              }
-              backButton={
-                <Button
-                  size="small"
-                  onClick={this.handlePrevTheme}
-                  disabled={this.state.chosenTheme === 0}
-                  className={classes.themeSelector}
-                >
-                  <KeyboardArrowLeft />
-                  Back
-                </Button>
-              }
-            />
-          </ListItem>
+          <LayoutThemeSection
+            chosenTheme={this.state.chosenTheme}
+            handleNextTheme={this.handleNextTheme}
+            handlePrevTheme={this.handlePrevTheme}
+          ></LayoutThemeSection>
           <List>
-            <Divider />
             <TextColorSection
               textColorOptions={this.state.filteredTextColorOptions}
               handleTextColorChange={this.handleTextColorChange}
@@ -260,6 +220,10 @@ class LeftDrawer extends Component {
               handleFontChange={this.handleFontChange}
               fontFamily={this.state.fontFamily}
             ></TextInputSection>
+            <ImageUploadSection
+              onUploadChangeHandler={this.props.onUploadChangeHandler}
+              onClickUploadHandler={this.props.onClickUploadHandler}
+            ></ImageUploadSection>
           </List>
         </Drawer>
         <MainContentSection

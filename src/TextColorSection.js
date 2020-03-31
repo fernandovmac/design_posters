@@ -4,6 +4,7 @@ import ListItem from "@material-ui/core/ListItem";
 import Grid from "@material-ui/core/Grid";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Typography from "@material-ui/core/Typography";
+import { Divider } from "@material-ui/core";
 
 const drawerWidth = 240;
 
@@ -61,6 +62,7 @@ export default function BackgroundColorSection(props) {
           ))}
         </Grid>
       </ListItem>
+      <Divider />
     </div>
   );
 }

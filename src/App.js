@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import "./App.css";
 import LeftDrawer from "./DrawerMenu.js";
-import List from "@material-ui/core/List";
-import MainTextInput from "./MainTextInput.js";
-import Typography from "@material-ui/core/Typography";
-import MainContentSection from "./MainContent.js";
-import { Button } from "@material-ui/core";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
 import axios from "axios";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: ["Quicksand, sans-serif"]
+  }
+});
 
 class App extends Component {
   constructor(props) {
@@ -64,58 +66,21 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <LeftDrawer
-          handleTitleChange={this.handleTitleChange}
-          subtitleValue={this.state.subtitle}
-          handleSubtitleChange={this.handleSubtitleChange}
-          title={this.state.title}
-          subTitle={this.state.subtitle}
-          uploadedImageUrl={this.state.selectedUploadedFileURL}
-          selectedFileURL={this.state.selectedFileURL}
-        ></LeftDrawer>
-        <div
-          className="container"
-          style={{ position: "absolute", left: "300px" }}
-        >
-          <div className="row">
-            <div className="col-md-6">
-              <form method="post" action="#" id="#">
-                <div className="form-group files">
-                  <label>Upload Your File </label>
-                  <input
-                    type="file"
-                    className="form-control"
-                    multiple=""
-                    onChange={this.onUploadChangeHandler}
-                  />
-                  <button
-                    type="button"
-                    class="btn btn-success btn-block"
-                    onClick={this.onClickUploadHandler}
-                  >
-                    Upload
-                  </button>
-                </div>
-              </form>
-            </div>
-            {/* <div className="uploadedImageContainer">
-              {this.state.selectedUploadedFileURL === "" ? null : (
-                <div className="displayUploadedImage">
-                  <img
-                    style={{
-                      minHeight: "200px",
-                      minWidth: "200px"
-                    }}
-                    src={require(`./${this.state.selectedFileURL}`)}
-                    // src={require("/Users/fernandomacedo/Documents/Repos/react-colorpicker/colorpicker-app/src/Residence_Permit-FRONT.jpg")}
-                  ></img>
-                </div>
-              )}
-            </div> */}
-          </div>
+      <ThemeProvider theme={theme}>
+        <div>
+          <LeftDrawer
+            handleTitleChange={this.handleTitleChange}
+            subtitleValue={this.state.subtitle}
+            handleSubtitleChange={this.handleSubtitleChange}
+            title={this.state.title}
+            subTitle={this.state.subtitle}
+            uploadedImageUrl={this.state.selectedUploadedFileURL}
+            selectedFileURL={this.state.selectedFileURL}
+            onUploadChangeHandler={this.onUploadChangeHandler}
+            onClickUploadHandler={this.onClickUploadHandler}
+          ></LeftDrawer>
         </div>
-      </div>
+      </ThemeProvider>
     );
   }
 }
