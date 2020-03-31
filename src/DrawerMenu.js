@@ -273,6 +273,8 @@ class LeftDrawer extends Component {
           mainContentBackgroundColor={this.state.backgroundColor}
           titleFontFamily={this.state.fontFamily}
           subtitleFontFamily={this.state.fontFamily}
+          uploadedImageURL={this.props.uploadedImageUrl}
+          selectedFileURL={this.props.selectedFileURL}
         ></MainContentSection>
       </div>
     );

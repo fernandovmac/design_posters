@@ -17,7 +17,7 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage }).single("file");
 
 app.post("/upload", function(req, res) {
-  console.log("Server somehow?");
+  console.log("Server  works somehow?");
 
   upload(req, res, function(err) {
     if (err instanceof multer.MulterError) {

@@ -64,12 +64,17 @@ export default function MainContentSection(props) {
         <Typography variant="h4" gutterBottom className={classes.subTitle}>
           {props.subTitle}
         </Typography>
-        <div
-          className={classes.image}
-          style={{
-            backgroundImage: `url(${"https://i.picsum.photos/id/821/200/200.jpg"})`
-          }}
-        ></div>
+        <div className="uploadedImageContainer">
+          {props.uploadedImageURL === "" ? null : (
+            <div className={classes.image}>
+              <img
+                style={{ height: "200px" }}
+                src={require(`./${props.selectedFileURL}`)}
+                // src={require("/Users/fernandomacedo/Documents/Repos/react-colorpicker/colorpicker-app/src/Residence_Permit-FRONT.jpg")}
+              ></img>
+            </div>
+          )}
+        </div>
       </main>
     </div>
   );

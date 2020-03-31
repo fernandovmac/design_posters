@@ -59,7 +59,7 @@ class App extends Component {
       this.setState({
         selectedUploadedFileURL: this.state.selectedFileURL
       });
-    }, 1000);
+    }, 3000);
   };
 
   render() {
@@ -71,6 +71,8 @@ class App extends Component {
           handleSubtitleChange={this.handleSubtitleChange}
           title={this.state.title}
           subTitle={this.state.subtitle}
+          uploadedImageUrl={this.state.selectedUploadedFileURL}
+          selectedFileURL={this.state.selectedFileURL}
         ></LeftDrawer>
         <div
           className="container"
@@ -97,7 +99,7 @@ class App extends Component {
                 </div>
               </form>
             </div>
-            <div className="uploadedImageContainer">
+            {/* <div className="uploadedImageContainer">
               {this.state.selectedUploadedFileURL === "" ? null : (
                 <div className="displayUploadedImage">
                   <img
@@ -110,7 +112,7 @@ class App extends Component {
                   ></img>
                 </div>
               )}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
