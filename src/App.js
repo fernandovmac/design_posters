@@ -16,7 +16,8 @@ class App extends Component {
       title: "title",
       subtitle: "subtitle",
       selectedFile: null,
-      selectedFileURL: ""
+      selectedFileURL: "",
+      selectedUploadedFileURL: ""
     };
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleSubtitleChange = this.handleSubtitleChange.bind(this);
@@ -53,6 +54,12 @@ class App extends Component {
         // then print response status
         console.log(res.statusText);
       });
+
+    setTimeout(() => {
+      this.setState({
+        selectedUploadedFileURL: this.state.selectedFileURL
+      });
+    }, 1000);
   };
 
   render() {
@@ -90,13 +97,20 @@ class App extends Component {
                 </div>
               </form>
             </div>
-            <div
-              style={{
-                backgroundImage: `url("./${this.state.selectedFileURL}")`,
-                minHeight: "200px",
-                minWidth: "200px"
-              }}
-            ></div>
+            <div className="uploadedImageContainer">
+              {this.state.selectedUploadedFileURL === "" ? null : (
+                <div className="displayUploadedImage">
+                  <img
+                    style={{
+                      minHeight: "200px",
+                      minWidth: "200px"
+                    }}
+                    src={require(`./${this.state.selectedFileURL}`)}
+                    // src={require("/Users/fernandomacedo/Documents/Repos/react-colorpicker/colorpicker-app/src/Residence_Permit-FRONT.jpg")}
+                  ></img>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
