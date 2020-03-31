@@ -5,13 +5,18 @@ import List from "@material-ui/core/List";
 import MainTextInput from "./MainTextInput.js";
 import Typography from "@material-ui/core/Typography";
 import MainContentSection from "./MainContent.js";
+import { Button } from "@material-ui/core";
+import axios from "axios";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       title: "title",
-      subtitle: "subtitle"
+      subtitle: "subtitle",
+      selectedFile: null,
+      selectedFileURL: ""
     };
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleSubtitleChange = this.handleSubtitleChange.bind(this);
@@ -28,6 +33,28 @@ class App extends Component {
       subtitle: e.target.value
     });
   }
+
+  onUploadChangeHandler = event => {
+    this.setState({
+      selectedFile: event.target.files[0],
+      selectedFileURL: event.target.files[0].name,
+      loaded: 0
+    });
+  };
+
+  onClickUploadHandler = () => {
+    const data = new FormData();
+    data.append("file", this.state.selectedFile);
+    axios
+      .post("http://localhost:8000/upload", data, {
+        // receive two parameter endpoint url ,form data
+      })
+      .then(res => {
+        // then print response status
+        console.log(res.statusText);
+      });
+  };
+
   render() {
     return (
       <div>
@@ -38,6 +65,40 @@ class App extends Component {
           title={this.state.title}
           subTitle={this.state.subtitle}
         ></LeftDrawer>
+        <div
+          className="container"
+          style={{ position: "absolute", left: "300px" }}
+        >
+          <div className="row">
+            <div className="col-md-6">
+              <form method="post" action="#" id="#">
+                <div className="form-group files">
+                  <label>Upload Your File </label>
+                  <input
+                    type="file"
+                    className="form-control"
+                    multiple=""
+                    onChange={this.onUploadChangeHandler}
+                  />
+                  <button
+                    type="button"
+                    class="btn btn-success btn-block"
+                    onClick={this.onClickUploadHandler}
+                  >
+                    Upload
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div
+              style={{
+                backgroundImage: `url("./${this.state.selectedFileURL}")`,
+                minHeight: "200px",
+                minWidth: "200px"
+              }}
+            ></div>
+          </div>
+        </div>
       </div>
     );
   }
