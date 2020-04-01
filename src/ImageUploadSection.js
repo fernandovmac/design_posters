@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
@@ -27,7 +27,6 @@ const style = makeStyles(theme => ({
 
 export default function ImageUploadSection(props) {
   const classes = style(props);
-  const { color, ...other } = props;
 
   return (
     <div className="containerImageUploadSection">

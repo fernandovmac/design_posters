@@ -54,7 +54,7 @@ class App extends Component {
       })
       .then(res => {
         // then print response status
-        console.log(res.statusText);
+        console.log(`${res.statusText} file uploaded`);
       });
 
     setTimeout(() => {

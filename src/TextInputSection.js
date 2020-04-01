@@ -1,15 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import TextField from "@material-ui/core/TextField";
 import Divider from "@material-ui/core/Divider";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-
-const drawerWidth = 240;
+import FormControl from "@material-ui/core/FormControl";
 
 const style = makeStyles(theme => ({
   content: {
@@ -25,7 +22,6 @@ const style = makeStyles(theme => ({
     borderRadius: "2px"
   },
   formControl: {
-    margin: theme.spacing(2),
     minWidth: 80,
     maxHeight: "100px",
     fontWeight: 100,

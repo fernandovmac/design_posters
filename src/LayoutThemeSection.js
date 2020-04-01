@@ -8,8 +8,6 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import Button from "@material-ui/core/Button";
 
-const drawerWidth = 240;
-
 const style = makeStyles(theme => ({
   root: {
     display: "flex",

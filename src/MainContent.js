@@ -1,8 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-
-const drawerWidth = 240;
 
 const style = makeStyles(theme => ({
   content: {
@@ -48,7 +46,6 @@ const style = makeStyles(theme => ({
 
 export default function MainContentSection(props) {
   const classes = style(props);
-  const { color, ...other } = props;
   return (
     <div>
       <main className={classes.content}>
@@ -70,6 +67,7 @@ export default function MainContentSection(props) {
               <img
                 style={{ height: "200px" }}
                 src={require(`./${props.selectedFileURL}`)}
+                alt=""
                 // src={require("/Users/fernandomacedo/Documents/Repos/react-colorpicker/colorpicker-app/src/Residence_Permit-FRONT.jpg")}
               ></img>
             </div>
