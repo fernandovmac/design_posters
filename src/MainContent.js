@@ -60,17 +60,14 @@ export default function MainContentSection(props) {
 
   const exportImage = () => {
     console.log("exporting image?");
-    var node = document.getElementById("main-content");
 
     domtoimage
-      .toPng(node)
+      .toJpeg(document.getElementById("main-content"), { quality: 0.95 })
       .then(function(dataUrl) {
-        var img = new Image();
-        img.src = dataUrl;
-        document.body.appendChild(img);
-      })
-      .catch(function(error) {
-        console.error("oops, something went wrong!", error);
+        var link = document.createElement("a");
+        link.download = "my-image-name.jpeg";
+        link.href = dataUrl;
+        link.click();
       });
   };
 
