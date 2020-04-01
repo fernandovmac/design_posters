@@ -1,14 +1,17 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import domtoimage from "dom-to-image";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
 
 const style = makeStyles(theme => ({
   content: {
-    flexGrow: 1,
-    padding: 6,
     backgroundColor: props => props.mainContentBackgroundColor,
-    minWidth: "800px",
-    minHeight: "1500px"
+    minWidth: "720px",
+    minHeight: "720px"
+    // position: "absolute",
+    // marginTop: "64px"
   },
 
   title: {
@@ -17,7 +20,8 @@ const style = makeStyles(theme => ({
     color: props => props.textColor,
     left: props => props.titlePosX,
     top: props => props.titlePosY,
-    transition: "all .3s ease-in-out .2s",
+    transitionProperty: "top, left",
+    transition: " .3s ease-in-out .2s",
     zIndex: 99
   },
 
@@ -27,18 +31,25 @@ const style = makeStyles(theme => ({
     left: props => props.subtitlePosX,
     top: props => props.subtitlePosY,
     color: props => props.textColor,
-    transition: "all .3s ease-in-out .2s",
+    transitionProperty: "top, left",
+    transition: ".3s ease-in-out .2s",
     zIndex: 99
   },
 
   image: {
     position: "absolute",
-    left: "500px",
+    left: "300px",
     top: "150px",
     height: "200px",
     width: "200px",
     backgroundPosition: "center",
     zIndex: 2
+  },
+
+  exportButton: {
+    position: "fixed",
+    top: "480px",
+    left: "760px"
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar
@@ -46,9 +57,26 @@ const style = makeStyles(theme => ({
 
 export default function MainContentSection(props) {
   const classes = style(props);
+
+  const exportImage = () => {
+    console.log("exporting image?");
+    var node = document.getElementById("main-content");
+
+    domtoimage
+      .toPng(node)
+      .then(function(dataUrl) {
+        var img = new Image();
+        img.src = dataUrl;
+        document.body.appendChild(img);
+      })
+      .catch(function(error) {
+        console.error("oops, something went wrong!", error);
+      });
+  };
+
   return (
     <div>
-      <main className={classes.content}>
+      <main className={classes.content} id="main-content">
         <div className={classes.toolbar} />
         <Typography
           variant="h1"
@@ -73,6 +101,14 @@ export default function MainContentSection(props) {
             </div>
           )}
         </div>
+        <Fab
+          color="primary"
+          aria-label="add"
+          className={classes.exportButton}
+          onClick={exportImage}
+        >
+          <AddIcon />
+        </Fab>
       </main>
     </div>
   );

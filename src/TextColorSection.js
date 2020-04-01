@@ -54,8 +54,7 @@ export default function BackgroundColorSection(props) {
                 onClick={props.handleTextColorChange}
                 // size="small"
                 style={{
-                  borderRadius:
-                    props.selectedTextColorButton === index ? "6px" : "2px",
+                  borderRadius: props.textColor === value ? "6px" : "0px",
                   backgroundColor: value
                 }}
                 centerRipple="true"

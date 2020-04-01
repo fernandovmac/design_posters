@@ -39,7 +39,6 @@ const style = makeStyles(theme => ({
 export default function BackgroundColorSection(props) {
   const classes = style(props);
 
-  const styleSelectedButton = {};
   return (
     <div className="backgroundColorSelector">
       <ListItem>
@@ -56,10 +55,7 @@ export default function BackgroundColorSection(props) {
                 key={index}
                 onClick={props.handleBackgroundColorChange}
                 style={{
-                  borderRadius:
-                    props.selectedBackgroundColorButton === index
-                      ? "6px"
-                      : "2px",
+                  borderRadius: props.backgroundColor === value ? "6px" : "0px",
                   backgroundColor: value
                 }}
                 centerRipple="true"
