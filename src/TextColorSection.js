@@ -26,12 +26,10 @@ const style = makeStyles(theme => ({
     padding: theme.spacing(3)
   },
   colorButton: {
-    // padding: "10px",
-    // margin: "10px",
     minWidth: "16px",
-    // maxWidth: "8px",
     minHeight: "18px",
-    borderRadius: "2px"
+    borderRadius: "2px",
+    transition: "all .2s ease-in-out .2s"
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar
@@ -55,7 +53,11 @@ export default function BackgroundColorSection(props) {
                 key={index}
                 onClick={props.handleTextColorChange}
                 // size="small"
-                style={{ backgroundColor: value }}
+                style={{
+                  borderRadius:
+                    props.selectedTextColorButton === index ? "6px" : "2px",
+                  backgroundColor: value
+                }}
                 centerRipple="true"
               ></ButtonBase>
             </Grid>

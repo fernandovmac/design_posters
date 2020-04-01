@@ -61,6 +61,7 @@ class LeftDrawer extends Component {
         "#49a8de",
         "#ffedea"
       ],
+      selectedBackgroundColorButton: null,
       textColor: "",
       filteredTextColorOptions: [
         "#e92f71",
@@ -77,6 +78,7 @@ class LeftDrawer extends Component {
         "#49a8de",
         "#ffedea"
       ],
+      selectedTextColorButton: null,
       unfilteredTextColorOptions: [
         ["#e92f71", "#1b9591", "#5201cf", "#005577"],
         ["#b2987c", "#f9e8e2", "#aabcb9", "#f58e84"],
@@ -115,8 +117,12 @@ class LeftDrawer extends Component {
 
   handleBackgroundColorChange = event => {
     const id = Number(event.currentTarget.id);
-    console.log(`change color background to ${id}`);
+
     this.setState({ backgroundColor: this.state.backgroundColorOptions[id] });
+    this.setState({ selectedBackgroundColorButton: id });
+    console.log(
+      `change color background to ${id} and the button is ${this.state.selectedButton}`
+    );
     this.setState({
       filteredTextColorOptions: this.state.unfilteredTextColorOptions[
         Math.floor(Math.random() * 3)
@@ -128,6 +134,7 @@ class LeftDrawer extends Component {
     const id = Number(event.currentTarget.id);
     console.log(`change color text to ${id}`);
     this.setState({ textColor: this.state.filteredTextColorOptions[id] });
+    this.setState({ selectedTextColorButton: id });
   };
 
   handleNextTheme = () => {
@@ -191,6 +198,9 @@ class LeftDrawer extends Component {
           <BackgroundColorSection
             backgroundColorOptions={this.state.backgroundColorOptions}
             handleBackgroundColorChange={this.handleBackgroundColorChange}
+            selectedBackgroundColorButton={
+              this.state.selectedBackgroundColorButton
+            }
           ></BackgroundColorSection>
           <LayoutThemeSection
             chosenTheme={this.state.chosenTheme}
@@ -201,6 +211,7 @@ class LeftDrawer extends Component {
             <TextColorSection
               textColorOptions={this.state.filteredTextColorOptions}
               handleTextColorChange={this.handleTextColorChange}
+              selectedTextColorButton={this.state.selectedTextColorButton}
             ></TextColorSection>
             <TextInputSection
               handleTitleChange={this.props.handleTitleChange}
