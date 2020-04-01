@@ -84,19 +84,19 @@ class LeftDrawer extends Component {
         ["#aabcb9", "#f58e84", "#ae6a9a", "#e6d2e0", "#49a8de", "#ffedea"]
       ],
       chosenTheme: 0,
-      titlePosXOptions: ["200px", "220px", "240px", "260px", "400px", "420px"],
-      titlePosX: "300px",
+      titlePosXOptions: ["0px", "20px", "40px", "60px", "100px", "120px"],
+      titlePosX: "0px",
       titlePosYOptions: ["100px", "120px", "180px", "200px", "220px", "240px"],
-      titlePosY: "100px",
+      titlePosY: "50px",
       subtitlePosXOptions: [
         "200px",
+        "220px",
+        "280px",
         "300px",
-        "400px",
-        "450px",
-        "500px",
-        "520px"
+        "350px",
+        "400px"
       ],
-      subtitlePosX: "300px",
+      subtitlePosX: "100px",
       subtitlePosYOptions: [
         "100px",
         "200px",

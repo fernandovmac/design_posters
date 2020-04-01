@@ -9,9 +9,9 @@ const style = makeStyles(theme => ({
   content: {
     backgroundColor: props => props.mainContentBackgroundColor,
     minWidth: "720px",
-    minHeight: "720px"
-    // position: "absolute",
-    // marginTop: "64px"
+    minHeight: "720px",
+    left: "240px",
+    position: "absolute"
   },
 
   title: {
@@ -48,8 +48,8 @@ const style = makeStyles(theme => ({
 
   exportButton: {
     position: "fixed",
-    top: "480px",
-    left: "760px"
+    top: "380px",
+    left: "560px"
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar
@@ -60,12 +60,23 @@ export default function MainContentSection(props) {
 
   const exportImage = () => {
     console.log("exporting image?");
+    const node = document.getElementById("main-content");
+    const scale = 2;
 
     domtoimage
-      .toJpeg(document.getElementById("main-content"), { quality: 0.95 })
+      .toPng(node, {
+        quality: 1,
+        height: node.offsetHeight * scale,
+        width: node.offsetWidth * scale,
+        style: {
+          transform: `scale(${scale}) translate(${node.offsetWidth /
+            6 /
+            scale}px, ${node.offsetHeight / 3.15 / scale}px)`
+        }
+      })
       .then(function(dataUrl) {
         var link = document.createElement("a");
-        link.download = "my-image-name.jpeg";
+        link.download = "my-image-name.png";
         link.href = dataUrl;
         link.click();
       });
@@ -98,15 +109,15 @@ export default function MainContentSection(props) {
             </div>
           )}
         </div>
-        <Fab
-          color="primary"
-          aria-label="add"
-          className={classes.exportButton}
-          onClick={exportImage}
-        >
-          <AddIcon />
-        </Fab>
       </main>
+      <Fab
+        color="primary"
+        aria-label="add"
+        className={classes.exportButton}
+        onClick={exportImage}
+      >
+        <AddIcon />
+      </Fab>
     </div>
   );
 }
