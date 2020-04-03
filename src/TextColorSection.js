@@ -4,7 +4,10 @@ import ListItem from "@material-ui/core/ListItem";
 import Grid from "@material-ui/core/Grid";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Typography from "@material-ui/core/Typography";
-import { Divider } from "@material-ui/core";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const drawerWidth = 240;
 
@@ -13,7 +16,11 @@ const style = makeStyles(theme => ({
     display: "flex",
     flexGrow: 1
   },
-
+  textColorItem: {
+    minWidth: `${drawerWidth}px`,
+    paddingLeft: "0px",
+    paddingRight: "0px"
+  },
   drawer: {
     width: drawerWidth,
     flexShrink: 0
@@ -39,31 +46,39 @@ export default function BackgroundColorSection(props) {
   const classes = style(props);
   return (
     <div className="textColorSection">
-      <ListItem>
-        <Typography>Text</Typography>
-      </ListItem>
-      <ListItem>
-        <Grid container spacing={1}>
-          {props.textColorOptions.map((value, index) => (
-            <Grid item xs={1}>
-              <ButtonBase
-                className={classes.colorButton}
-                focusRipple
-                id={index}
-                key={index}
-                onClick={props.handleTextColorChange}
-                // size="small"
-                style={{
-                  borderRadius: props.textColor === value ? "6px" : "0px",
-                  backgroundColor: value
-                }}
-                centerRipple="true"
-              ></ButtonBase>
+      <ListItem className={classes.textColorItem}>
+        <ExpansionPanel className={classes.textColorItem}>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography className={classes.heading}>Text Color</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <Grid container spacing={1}>
+              {props.textColorOptions.map((value, index) => (
+                <Grid item xs={1}>
+                  <ButtonBase
+                    className={classes.colorButton}
+                    focusRipple
+                    id={index}
+                    key={index}
+                    onClick={props.handleTextColorChange}
+                    // size="small"
+                    style={{
+                      borderRadius: props.textColor === value ? "6px" : "0px",
+                      backgroundColor: value,
+                      marginRight: "3px"
+                    }}
+                    centerRipple="true"
+                  ></ButtonBase>
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
       </ListItem>
-      <Divider />
     </div>
   );
 }

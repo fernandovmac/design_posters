@@ -4,7 +4,10 @@ import ListItem from "@material-ui/core/ListItem";
 import Grid from "@material-ui/core/Grid";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const drawerWidth = 240;
 
@@ -12,7 +15,12 @@ const style = makeStyles(theme => ({
   root: {
     display: "flex",
     flexGrow: 1,
-    fontFamily: "Noto Sans JP"
+    width: "100%"
+  },
+  backgroundColorItem: {
+    width: `${drawerWidth}px`,
+    paddingLeft: "0px",
+    paddingRight: "0px"
   },
 
   drawer: {
@@ -41,30 +49,41 @@ export default function BackgroundColorSection(props) {
 
   return (
     <div className="backgroundColorSelector">
-      <ListItem>
-        <Typography>Background Color</Typography>
-      </ListItem>
-      <ListItem style={{ maxWidth: "240px" }}>
-        <Grid container spacing={1}>
-          {props.backgroundColorOptions.map((value, index) => (
-            <Grid item xs={1}>
-              <ButtonBase
-                className={classes.colorButton}
-                focusRipple
-                id={index}
-                key={index}
-                onClick={props.handleBackgroundColorChange}
-                style={{
-                  borderRadius: props.backgroundColor === value ? "6px" : "0px",
-                  backgroundColor: value
-                }}
-                centerRipple="true"
-              ></ButtonBase>
+      <ListItem className={classes.backgroundColorItem}>
+        <ExpansionPanel>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography className={classes.heading}>
+              Background Color
+            </Typography>
+          </ExpansionPanelSummary>
+
+          <ExpansionPanelDetails>
+            <Grid container spacing={1}>
+              {props.backgroundColorOptions.map((value, index) => (
+                <Grid item xs={1}>
+                  <ButtonBase
+                    className={classes.colorButton}
+                    focusRipple
+                    id={index}
+                    key={index}
+                    onClick={props.handleBackgroundColorChange}
+                    style={{
+                      borderRadius:
+                        props.backgroundColor === value ? "6px" : "0px",
+                      backgroundColor: value
+                    }}
+                    centerRipple="true"
+                  ></ButtonBase>
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
       </ListItem>
-      <Divider />
     </div>
   );
 }
