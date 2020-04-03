@@ -88,6 +88,7 @@ class LeftDrawer extends Component {
       titlePosX: "0px",
       titlePosYOptions: ["100px", "120px", "180px", "200px", "220px", "240px"],
       titlePosY: "50px",
+      titleFontSize: "70px",
       subtitlePosXOptions: [
         "200px",
         "220px",
@@ -106,12 +107,17 @@ class LeftDrawer extends Component {
         "420px"
       ],
       subtitlePosY: "100px",
+      subTitleFontSize: "40px",
       fontFamily: "Gotu, sans-serif"
     };
     this.handleBackgroundColorChange = this.handleBackgroundColorChange.bind(
       this
     );
     this.handleTextColorChange = this.handleTextColorChange.bind(this);
+    this.handleTitleFontSizeChange = this.handleTitleFontSizeChange.bind(this);
+    this.handleSubTitleFontSizeChange = this.handleSubTitleFontSizeChange.bind(
+      this
+    );
   }
 
   handleBackgroundColorChange = event => {
@@ -172,6 +178,14 @@ class LeftDrawer extends Component {
     console.log(this.state.fontFamily);
   };
 
+  handleTitleFontSizeChange = (event, newValue) => {
+    this.setState({ titleFontSize: newValue });
+  };
+
+  handleSubTitleFontSizeChange = (event, newValue) => {
+    this.setState({ subTitleFontSize: newValue });
+  };
+
   render() {
     const { classes } = this.props;
     return (
@@ -208,6 +222,8 @@ class LeftDrawer extends Component {
               textColorOptions={this.state.filteredTextColorOptions}
               handleTextColorChange={this.handleTextColorChange}
               textColor={this.state.textColor}
+              handleTitleFontSizeChange={this.handleTitleFontSizeChange}
+              handleSubTitleFontSizeChange={this.handleSubTitleFontSizeChange}
             ></TextColorSection>
             <TextInputSection
               handleTitleChange={this.props.handleTitleChange}
@@ -229,8 +245,10 @@ class LeftDrawer extends Component {
           textColor={this.state.textColor}
           titlePosX={this.state.titlePosX}
           titlePosY={this.state.titlePosY}
+          titleFontSize={this.state.titleFontSize}
           subtitlePosX={this.state.subtitlePosX}
           subtitlePosY={this.state.subtitlePosY}
+          subTitleFontSize={this.state.subTitleFontSize}
           mainContentBackgroundColor={this.state.backgroundColor}
           titleFontFamily={this.state.fontFamily}
           subtitleFontFamily={this.state.fontFamily}

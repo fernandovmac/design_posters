@@ -22,7 +22,8 @@ const style = makeStyles(theme => ({
     top: props => props.titlePosY,
     transitionProperty: "top, left",
     transition: " .3s ease-in-out .2s",
-    zIndex: 99
+    zIndex: 99,
+    fontSize: props => props.titleFontSize
   },
 
   subTitle: {
@@ -33,7 +34,8 @@ const style = makeStyles(theme => ({
     color: props => props.textColor,
     transitionProperty: "top, left",
     transition: ".3s ease-in-out .2s",
-    zIndex: 99
+    zIndex: 99,
+    fontSize: props => props.subTitleFontSize
   },
 
   image: {
@@ -94,7 +96,12 @@ export default function MainContentSection(props) {
         >
           {props.title}
         </Typography>
-        <Typography variant="h4" gutterBottom className={classes.subTitle}>
+        <Typography
+          variant="h4"
+          component="h4"
+          gutterBottom
+          className={classes.subTitle}
+        >
           {props.subTitle}
         </Typography>
         <div className="uploadedImageContainer">
