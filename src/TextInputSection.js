@@ -88,7 +88,7 @@ export default function TextInputSection(props) {
                     labelId="outlined-select"
                     id="select-font-family"
                     value={props.fontFamily}
-                    // onChange={props.handleFontChange}
+                    onChange={props.handleFontChange}
                     style={{ fontWeight: 100, fontSize: "12px", margin: "0px" }}
                   >
                     <MenuItem
