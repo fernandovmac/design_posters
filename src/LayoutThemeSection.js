@@ -41,7 +41,7 @@ export default function LayoutThemeSection(props) {
   return (
     <div className="containerLayoutThemeSection">
       <ListItem className={classes.layoutThemeItem}>
-        <ExpansionPanel style={{ width: "240px" }}>
+        <ExpansionPanel style={{ width: "240px" }} defaultExpanded="true">
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"

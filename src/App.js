@@ -4,10 +4,14 @@ import LeftDrawer from "./DrawerMenu.js";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import axios from "axios";
+import { blue } from "@material-ui/core/colors";
 
 const theme = createMuiTheme({
   typography: {
     fontFamily: ["Quicksand, sans-serif"]
+  },
+  palette: {
+    primary: { main: "#50615e" }
   }
 });
 

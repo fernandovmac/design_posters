@@ -108,7 +108,8 @@ class LeftDrawer extends Component {
       ],
       subtitlePosY: "100px",
       subTitleFontSize: "40px",
-      fontFamily: "Gotu, sans-serif"
+      fontFamily: "Gotu, sans-serif",
+      imageSize: "200px"
     };
     this.handleBackgroundColorChange = this.handleBackgroundColorChange.bind(
       this
@@ -118,6 +119,7 @@ class LeftDrawer extends Component {
     this.handleSubTitleFontSizeChange = this.handleSubTitleFontSizeChange.bind(
       this
     );
+    this.handleImageSizeChange = this.handleImageSizeChange.bind(this);
   }
 
   handleBackgroundColorChange = event => {
@@ -179,11 +181,15 @@ class LeftDrawer extends Component {
   };
 
   handleTitleFontSizeChange = (event, newValue) => {
-    this.setState({ titleFontSize: newValue });
+    this.setState({ titleFontSize: `${newValue}px` });
   };
 
   handleSubTitleFontSizeChange = (event, newValue) => {
-    this.setState({ subTitleFontSize: newValue });
+    this.setState({ subTitleFontSize: `${newValue}px` });
+  };
+
+  handleImageSizeChange = (event, newValue) => {
+    this.setState({ imageSize: `${newValue}px` });
   };
 
   render() {
@@ -236,6 +242,7 @@ class LeftDrawer extends Component {
             <ImageUploadSection
               onUploadChangeHandler={this.props.onUploadChangeHandler}
               onClickUploadHandler={this.props.onClickUploadHandler}
+              handleImageSizeChange={this.handleImageSizeChange}
             ></ImageUploadSection>
           </List>
         </Drawer>
@@ -254,6 +261,7 @@ class LeftDrawer extends Component {
           subtitleFontFamily={this.state.fontFamily}
           uploadedImageURL={this.props.uploadedImageUrl}
           selectedFileURL={this.props.selectedFileURL}
+          imageSize={this.state.imageSize}
         ></MainContentSection>
       </div>
     );

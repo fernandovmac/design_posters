@@ -65,7 +65,7 @@ export default function TextInputSection(props) {
   return (
     <div className="textInputSection">
       <ListItem className={classes.textInputItem}>
-        <ExpansionPanel>
+        <ExpansionPanel defaultExpanded="true">
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"

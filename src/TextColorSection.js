@@ -62,7 +62,10 @@ export default function BackgroundColorSection(props) {
   return (
     <div className="textColorSection">
       <ListItem className={classes.textColorItem}>
-        <ExpansionPanel className={classes.textColorItem}>
+        <ExpansionPanel
+          className={classes.textColorItem}
+          defaultExpanded="true"
+        >
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"

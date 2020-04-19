@@ -42,8 +42,8 @@ const style = makeStyles(theme => ({
     position: "absolute",
     left: "300px",
     top: "150px",
-    height: "200px",
-    width: "200px",
+    // height: props => props.imageSize,
+    // width: "200px",
     backgroundPosition: "center",
     zIndex: 2
   },
@@ -108,7 +108,7 @@ export default function MainContentSection(props) {
           {props.uploadedImageURL === "" ? null : (
             <div className={classes.image}>
               <img
-                style={{ height: "200px" }}
+                style={{ height: props.imageSize }}
                 src={require(`./${props.selectedFileURL}`)}
                 alt=""
                 // src={require("/Users/fernandomacedo/Documents/Repos/react-colorpicker/colorpicker-app/src/Residence_Permit-FRONT.jpg")}
